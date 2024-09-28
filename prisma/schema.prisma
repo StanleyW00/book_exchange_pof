@@ -1,0 +1,17 @@
+//dotenv -e .env.local -- prisma db push
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model book {
+    id        String  @id @default(auto()) @map("_id") @db.ObjectId
+    title     String
+    author    String
+    owner     String
+}
