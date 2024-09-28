@@ -18,7 +18,9 @@ export default async function ExchangePage({
         <button className="mt-4 rounded bg-zinc-400 px-10 py-2 text-white hover:bg-zinc-700">
           Go Back
         </button>
-        <h2>Which book you want to exchange?</h2>
+        <h2 className="font-heading text-[30px] font-bold leading-10 max-w-md mx-auto mt-10">
+          Which book you want to exchange?
+        </h2>
       </Link>
       <BookListExchange books={booksData} bookToExchange={bookId} />
     </div>

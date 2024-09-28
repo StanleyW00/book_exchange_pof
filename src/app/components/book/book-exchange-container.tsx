@@ -28,6 +28,8 @@ const BookExchangeContainer: React.FC<BookContainerExchangeProps> = ({
           onClick={async (e) => {
             e.preventDefault();
 
+            setLoading(true);
+
             const fields = {
               bookId1: book.id,
               bookId2: bookToExchange,
@@ -47,6 +49,7 @@ const BookExchangeContainer: React.FC<BookContainerExchangeProps> = ({
               router.push("/explore");
             }
           }}
+          disabled={loading}
         >
           {loading ? (
             <>

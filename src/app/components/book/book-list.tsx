@@ -3,7 +3,7 @@
 import { Book } from "@prisma/client";
 import BookContainer from "./book-container";
 import { useState } from "react";
-import { Search } from "lucide-react";
+import { Search, TriangleAlert } from "lucide-react";
 
 interface BookListProps {
   books: Book[];
@@ -18,6 +18,17 @@ const BookList: React.FC<BookListProps> = ({ books }) => {
         book.title.toLowerCase().includes(filter.toLowerCase())
       )
     : books;
+
+  if (filteredBooks.length == 0) {
+    return (
+      <div className="mt-4 flex h-screen flex-col items-center justify-center">
+        <TriangleAlert className="mb-2 h-20 w-20" />
+        <p className="text-md mb-[560px] text-center font-heading md:mb-96 md:ml-3 md:text-2xl">
+          No Books Available
+        </p>
+      </div>
+    );
+  }
 
   return (
     <div>
