@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import LoadingDots from "../loading-dots";
 
 const BookForm: React.FC = () => {
   const [title, setTitle] = useState<string>("");
@@ -10,7 +11,7 @@ const BookForm: React.FC = () => {
 
   return (
     <form
-      className="border-2 border-blue-500 bg-zinc-800 p-6 rounded-lg max-w-md mx-auto flex flex-col"
+      className="border-2 border-blue-800 bg-zinc-900 p-6 rounded-lg max-w-md mx-auto flex flex-col"
       onSubmit={async (e) => {
         e.preventDefault();
 
@@ -22,7 +23,7 @@ const BookForm: React.FC = () => {
           owner: owner,
         };
 
-        const set = await fetch("/explore/stg/api/postBook", {
+        const set = await fetch("/api/postBook", {
           method: "POST",
           body: JSON.stringify(fields),
         });
@@ -37,6 +38,7 @@ const BookForm: React.FC = () => {
           setTitle("");
           setAuthor("");
           setOwner("");
+          window.location.reload();
         }
       }}
     >
@@ -78,7 +80,13 @@ const BookForm: React.FC = () => {
         disabled={loading}
         className="mt-4 rounded bg-zinc-400 px-10 py-2 text-white hover:bg-zinc-700"
       >
-        Submit Book
+        {loading ? (
+          <>
+            <LoadingDots color="#FAFAFA" />
+          </>
+        ) : (
+          "Post"
+        )}
       </button>
     </form>
   );
